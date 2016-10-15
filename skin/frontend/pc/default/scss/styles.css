@@ -4039,13 +4039,23 @@ img { vertical-align: middle; }
 .aw_blog .tags h4 { font-weight: 700; font-size: 12px; }
 .aw_blog .menu-categories, .aw_blog .menu-recent, .aw_blog .menu-tags { padding: 10px 15px; }
 .aw_blog .menu-categories h5, .aw_blog .menu-recent h5, .aw_blog .menu-tags h5 { font-size: 15px; text-transform: uppercase; font-weight: normal; padding-bottom: 5px; }
-.aw_blog .menu-categories ul li, .aw_blog .menu-recent ul li, .aw_blog .menu-tags ul li { line-height: 20px; }
+.aw_blog .menu-categories ul li, .aw_blog .menu-recent ul li, .aw_blog .menu-tags ul li { line-height: 25px; }
 .aw_blog .menu-categories ul li a.on, .aw_blog .menu-recent ul li a.on, .aw_blog .menu-tags ul li a.on { color: #f39; text-decoration: underline; }
 .aw_blog .menu-categories ul li a:hover, .aw_blog .menu-recent ul li a:hover, .aw_blog .menu-tags ul li a:hover { color: #f39; text-decoration: underline; }
 .aw_blog .block-blog .menu-tags UL LI { display: inline; margin-left: 10px; padding: 2px; }
 .aw_blog .block-blog .menu-categories UL LI { margin-left: 10px; }
 .aw_blog .block-blog .menu-recent UL LI { margin-left: 10px; }
 .aw_blog .block-blog .menu-categories UL LI a, .aw_blog .block-blog .menu-recent UL LI a, .aw_blog .block-blog .menu-tags UL LI a { font-size: 11px; }
+.aw_blog .tag-count-1 { font-size: 1em !important; }
+.aw_blog .tag-count-2 { font-size: 1.2em !important; }
+.aw_blog .tag-count-3 { font-size: 1.4em !important; }
+.aw_blog .tag-count-4 { font-size: 1.6em !important; }
+.aw_blog .tag-count-5 { font-size: 1.8em !important; }
+.aw_blog .tag-count-6 { font-size: 2em !important; }
+.aw_blog .tag-count-7 { font-size: 2em !important; }
+.aw_blog .tag-count-8 { font-size: 2em !important; }
+.aw_blog .tag-count-9 { font-size: 2em !important; }
+.aw_blog .tag-count-10 { font-size: 2em !important; }
 .aw_blog .block-blog .head h4 { padding-left: 20px; }
 .aw_blog .block-blog .block-title strong { padding-left: 21px; background-image: url(../images/icon_blog.png); background-repeat: no-repeat; text-align: left; }
 .aw_blog .postWrapper .poster { display: inline; }
