@@ -172,6 +172,7 @@ $cur_cat_pro_size = Mage::getSingleton('catalog/layer')->getProductCollection()-
         ->getSelect()
         ->joinleft( array('cp'=> 'catalog_category_product'), 'cp.product_id = main_table.entity_pk_value')
         ->where("main_table.status_id=1  and cp.`category_id`='".$this->getCurrentCategory()->getId()."'")
+        ->order('main_table.created_at DESC')
         ->limit(30);
 
     $results = Mage::getSingleton('core/resource')->getConnection('core_read')->fetchAll($_reviewsCollection);
