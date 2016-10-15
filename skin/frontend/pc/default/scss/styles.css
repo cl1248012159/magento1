@@ -4016,7 +4016,10 @@ img { vertical-align: middle; }
 #content_body .HelpTabBox .title .subsection_tabs li.tab a.active { background: none repeat scroll 0 0 #fff; color: #000; }
 #content_body .HelpTabBox .box { clear: both; background-color: white; border-top: 1px solid #f39; }
 
-.aw_blog { box-shadow: 0px 0px 5px #ccc; margin-bottom: 20px; }
+.aw_blog { *zoom: 1; margin-bottom: 20px; }
+.aw_blog:after { display: block; content: "clear"; height: 0; clear: both; overflow: hidden; visibility: hidden; }
+.aw_blog .silder { float: left; width: 19%; background: #f6f6f6; border: 1px solid #e5e5e5; }
+.aw_blog .main { float: right; width: 80%; }
 .aw_blog .postWrapper { clear: both; padding-bottom: 25px; padding-left: 10px; padding-right: 10px; }
 .aw_blog .postTitle { margin-bottom: 15px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #DDD; }
 .aw_blog .postTitle h2 { margin: 0; padding: 0; font-weight: 400; font-size: 20px; }
@@ -4034,8 +4037,11 @@ img { vertical-align: middle; }
 .aw_blog .tags UL { display: inline; }
 .aw_blog .tags UL LI { display: inline; padding-right: 6px; font-weight: 400; }
 .aw_blog .tags h4 { font-weight: 700; font-size: 12px; }
-.aw_blog .menu-categories, .aw_blog .menu-recent, .aw_blog .menu-tags { margin: 5px 9px; }
-.aw_blog .menu-categories h5, .aw_blog .menu-recent h5, .aw_blog .menu-tags h5 { font-size: 11px; }
+.aw_blog .menu-categories, .aw_blog .menu-recent, .aw_blog .menu-tags { padding: 10px 15px; }
+.aw_blog .menu-categories h5, .aw_blog .menu-recent h5, .aw_blog .menu-tags h5 { font-size: 15px; text-transform: uppercase; font-weight: normal; padding-bottom: 5px; }
+.aw_blog .menu-categories ul li, .aw_blog .menu-recent ul li, .aw_blog .menu-tags ul li { line-height: 20px; }
+.aw_blog .menu-categories ul li a.on, .aw_blog .menu-recent ul li a.on, .aw_blog .menu-tags ul li a.on { color: #f39; text-decoration: underline; }
+.aw_blog .menu-categories ul li a:hover, .aw_blog .menu-recent ul li a:hover, .aw_blog .menu-tags ul li a:hover { color: #f39; text-decoration: underline; }
 .aw_blog .block-blog .menu-tags UL LI { display: inline; margin-left: 10px; padding: 2px; }
 .aw_blog .block-blog .menu-categories UL LI { margin-left: 10px; }
 .aw_blog .block-blog .menu-recent UL LI { margin-left: 10px; }
@@ -4057,6 +4063,9 @@ img { vertical-align: middle; }
 .aw_blog .widget-latest li { padding: 5px 10px; font-size: 12px; }
 .aw_blog .block-blog .menu-categories { margin: 0; padding: 5px 9px; }
 .aw_blog A.awblog_current_comment { text-decoration: none !important; font-weight: 700 !important; }
-.aw_blog .pager .amount, .aw_blog .pager .limiter { margin-top: 10px; }
+.aw_blog .toolbar .pager { background: none; border: 0; }
+.aw_blog .toolbar .pager > p, .aw_blog .toolbar .pager > div { display: none; }
+.aw_blog .toolbar .pager .pagination { display: block; }
+.aw_blog .toolbar .sorter { display: none; }
 
 /*# sourceMappingURL=styles.css.map */

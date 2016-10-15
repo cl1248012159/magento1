@@ -1,6 +1,16 @@
 .aw_blog{
-    box-shadow: 0px 0px 5px #ccc;
+    @include float_clear;
+    //box-shadow: 0px 0px 5px #ccc;
     margin-bottom:20px;
+    .silder{
+      float:left;width:19%;background:#f6f6f6;border:1px solid #e5e5e5;
+    }
+    .main{
+      float:right;width:80%;
+    }
+
+
+
     .postWrapper{clear:both;padding-bottom:25px;padding-left: 10px;padding-right: 10px;}
     .postTitle{margin-bottom:15px;border-bottom-width:1px;border-bottom-style:solid;border-bottom-color:#DDD}
     .postTitle h2{margin:0;padding:0;font-weight:400;font-size:20px;
@@ -23,8 +33,23 @@
     .tags UL{display:inline}
     .tags UL LI{display:inline;padding-right:6px;font-weight:400}
     .tags h4{font-weight:700;font-size:12px}
-    .menu-categories,.menu-recent,.menu-tags{margin:5px 9px}
-    .menu-categories h5,.menu-recent h5,.menu-tags h5{font-size:11px}
+
+  .menu-categories,.menu-recent,.menu-tags{
+      padding:10px 15px;
+      h5{
+        font-size:15px;text-transform: uppercase;font-weight: normal;padding-bottom:5px;
+      }
+      ul{
+        li{
+          line-height:20px;
+          a{
+            &.on{color:#f39;text-decoration: underline;}
+            &:hover{color:#f39;text-decoration: underline;}
+          }
+        }
+      }
+  }
+
     .block-blog .menu-tags UL LI{display:inline;margin-left:10px;padding:2px}
     .block-blog .menu-categories UL LI{margin-left:10px}
     .block-blog .menu-recent UL LI{margin-left:10px}
@@ -47,5 +72,14 @@
     .block-blog .menu-categories{margin:0;padding:5px 9px}
     A.awblog_current_comment{text-decoration:none!important;font-weight:700!important}
 
-    .pager{.amount,.limiter{margin-top:10px;}}
+  .toolbar{
+    .pager{
+      background:none;border:0;
+      &>p,&>div{  display:none;  }
+      .pagination{display:block;}
+    }
+    .sorter{  display:none;  }
+  }
+
+
 }
