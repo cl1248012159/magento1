@@ -3,7 +3,7 @@
         <h5><?php echo Mage::helper('blog')->__('Tags'); ?></h5>
         <ul class="tagcloud">
             <?php foreach ($this->getCollection() as $tag): ?>
-                <li><a class="<?php if($this->getRequest()->getParam('tag')==$tag->getTag()){echo "on";}?>" class="tag-count-<?php echo $this->getTagWeight($tag) ?>" href="<?php echo $this->getTagHref($tag) ?>"><?php echo $tag->getTag() ?></a></li>
+                <li><a class="tag-count-<?php echo $this->getTagWeight($tag) ?> <?php if($this->getRequest()->getParam('tag')== str_replace(" ","+",$tag->getTag())){echo "on";}?>" href="<?php echo $this->getTagHref($tag) ?>"><?php echo $tag->getTag() ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>
