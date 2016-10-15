@@ -4046,16 +4046,6 @@ img { vertical-align: middle; }
 .aw_blog .block-blog .menu-categories UL LI { margin-left: 10px; }
 .aw_blog .block-blog .menu-recent UL LI { margin-left: 10px; }
 .aw_blog .block-blog .menu-categories UL LI a, .aw_blog .block-blog .menu-recent UL LI a, .aw_blog .block-blog .menu-tags UL LI a { font-size: 11px; }
-.aw_blog .tag-count-1 { font-size: 1em !important; }
-.aw_blog .tag-count-2 { font-size: 1.2em !important; }
-.aw_blog .tag-count-3 { font-size: 1.4em !important; }
-.aw_blog .tag-count-4 { font-size: 1.6em !important; }
-.aw_blog .tag-count-5 { font-size: 1.8em !important; }
-.aw_blog .tag-count-6 { font-size: 2em !important; }
-.aw_blog .tag-count-7 { font-size: 2em !important; }
-.aw_blog .tag-count-8 { font-size: 2em !important; }
-.aw_blog .tag-count-9 { font-size: 2em !important; }
-.aw_blog .tag-count-10 { font-size: 2em !important; }
 .aw_blog .block-blog .head h4 { padding-left: 20px; }
 .aw_blog .block-blog .block-title strong { padding-left: 21px; background-image: url(../images/icon_blog.png); background-repeat: no-repeat; text-align: left; }
 .aw_blog .postWrapper .poster { display: inline; }
