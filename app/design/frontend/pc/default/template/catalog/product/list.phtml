@@ -3,6 +3,64 @@
     $_helper = $this->helper('catalog/output');
 ?>
 
+<!-- Structured Data-->
+<?php
+$currCat = Mage::registry('current_category');
+if($currCat):
+$prodCollection = Mage::getResourceModel('catalog/product_collection')->addCategoryFilter($currCat);
+$proids = array();
+foreach ($prodCollection as $pro) {
+    $proids[] = $pro->getId();
+}
+$review1 = Mage::getModel('review/review')->getResourceCollection()
+    ->addFieldToFilter('entity_pk_value', array('in' => $proids))
+    ->addStoreFilter(Mage::app()->getStore()->getId())
+    ->addStatusFilter(Mage_Review_Model_Review::STATUS_APPROVED)
+    ->setOrder('created_at', 'DESC');
+?>
+<?php if($currCat->getLevel() == '2'):?>
+    <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb" style="display:none;">
+        <a href="<?php echo $currCat->getUrl(); ?>" itemprop="url">
+            <span itemprop="title"><?php echo $currCat->getName();?></span>
+        </a>
+    </div>
+<?php elseif($currCat->getLevel() == '3'):?>
+    <div style="display:none;" >
+        <?php $parentcategory = Mage::getModel('catalog/category')->load($currCat->getParentId()); ?>
+        <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb" itemref="<?php echo $currCat->getUrlPath();?>">
+            <a href="<?php echo $parentcategory->getUrl(); ?>" itemprop="url">
+                <span itemprop="title"><?php echo $parentcategory->getName(); ?></span>
+            </a> ›
+        </div>
+        <div id="<?php echo $currCat->getUrlPath();?>" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" itemprop="child">
+            <a href="<?php echo $currCat->getUrl(); ?>" itemprop="url">
+                <span itemprop="title"><?php echo $currCat->getName();?></span>
+            </a>
+        </div>
+    </div>
+<?php elseif($currCat->getLevel() == '4'):?>
+    <div style="display:none;" >
+        <?php
+        $parentcategory = Mage::getModel('catalog/category')->load($currCat->getParentId());
+        $parentparentcategory = Mage::getModel('catalog/category')->load($parentcategory->getParentId())
+        ?>
+        <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb" itemref="<?php echo $parentcategory->getUrlPath();?>">
+            <a href="<?php echo $parentparentcategory->getUrl(); ?>" itemprop="url">
+                <span itemprop="title"><?php echo $parentparentcategory->getName(); ?></span>
+            </a> ›
+        </div>
+        <div id="<?php echo $parentcategory->getUrlPath(); ?>" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" itemref="<?php echo $currCat->getUrlPath();?>" itemprop="child">
+            <a href="<?php echo $parentcategory->getUrl(); ?>" itemprop="url">
+                <span itemprop="title"><?php echo $parentcategory->getName(); ?></span>
+            </a> ›
+        </div>
+        <div id="<?php echo $currCat->getUrlPath();?>" itemscope itemtype="http://data-vocabulary.org/Breadcrumb" itemprop="child">
+            <a href="<?php echo $currCat->getUrl(); ?>" itemprop="url">
+                <span itemprop="title"><?php echo $currCat->getName();?></span>
+            </a>
+        </div>
+    </div>
+<?php endif;?>
 
 
 <?php echo $this->getLayout()->createBlock('catalog/product_list_toolbar')

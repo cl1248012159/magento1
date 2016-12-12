@@ -1,6 +1,50 @@
 <?php $_helper = $this->helper('catalog/output'); ?>
 <?php $_product = $this->getProduct(); ?>
 
+
+
+<!-- Structured Data-->
+<?php
+$productid=$_product->getId();
+$table= Mage::getSingleton('core/resource')->getTableName('review_entity_summary');
+$storeid= Mage::app()->getStore()->getStoreId();
+$read=Mage::getSingleton('core/resource')->getConnection('core_read');
+$sql="select * from `".$table."` where `entity_pk_value`=".$productid." and `store_id`=".$storeid;
+$result=$read->fetchAll($sql);
+if($result){
+    $rating_summary=$result[0]['rating_summary']*0.05;
+    $rating_summary=number_format($rating_summary,1);
+    $rating_count = $result[0]['reviews_count'];
+}
+?>
+<div itemscope itemtype="http://schema.org/Product" style="display:none;">
+        <span itemprop="name"><?php echo $_product->getName()?></span>
+        <img itemprop="image" src="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(265); ?>" alt="<?php echo $_product->getName()?>" />
+        <span itemprop="description"><?php echo $_product->getDescription(); ?></span>
+        Product #: <span itemprop="sku"><?php echo  $_product->getSku(); ?></span>
+        <?php if($rating_count):?>
+            <span itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+        <span itemprop="ratingValue"><?php echo $rating_summary; ?></span> stars, based on <span itemprop="reviewCount"><?php echo $rating_count;?></span> reviews
+    </span>
+        <?php endif;?>
+
+        <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        Regular price: <?php echo $_product->getPrice();?>
+            <meta itemprop="priceCurrency" content="USD" />
+            <?php if($_product->getSpecialPrice()):?>
+                $<span itemprop="price"><?php echo $_product->getSpecialPrice();?></span>
+            <?php else:?>
+                $<span itemprop="price"><?php echo $_product->getPrice();?></span>
+            <?php endif;?>
+            Available from: <span itemprop="seller">Iislambridal.com</span>
+            <?php if($_product->getIsInStock()):?>
+                <link itemprop="availability" href="http://schema.org/InStock"/>In stock! Order now!
+            <?php endif;?>
+    </span>
+</div>
+
+
+
 <script type="text/javascript">
     var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
 </script>
