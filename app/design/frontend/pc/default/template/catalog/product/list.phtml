@@ -61,6 +61,28 @@ $review1 = Mage::getModel('review/review')->getResourceCollection()
         </div>
     </div>
 <?php endif;?>
+    <div itemscope itemtype="http://data-vocabulary.org/Review-aggregate" style="display:none;">
+        <h3>
+            <span itemprop="itemreviewed"><?php echo $currCat->getName();?></span>
+        </h3>
+        <div>
+            <div>
+                <span itemprop="rating" itemscope="" itemtype="http://data-vocabulary.org/Rating">
+                    <span itemprop="average">4.8</span>/<span itemprop="best">5</span>
+                </span>
+            </div>
+            <span class="reviewcount"><span itemprop="votes"><?php echo count($review1) ;?></span> Reviews</span>
+        </div>
+    </div>
+<?php endif; ?>
+
+
+
+
+
+
+
+
 
 
 <?php echo $this->getLayout()->createBlock('catalog/product_list_toolbar')
