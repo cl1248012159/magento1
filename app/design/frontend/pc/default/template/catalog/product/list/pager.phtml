@@ -22,7 +22,7 @@
 
 
 
-            <?php if ($p_request && $p_request>5): ?>
+            <?php if ($p_request && $p_request>5 && $p_array[0]!=1): ?>
                 <li><a href="<?php echo $this->getFirstPageUrl() ?>">1</a></li>
                 <li><a href="<?php echo $this->getPageUrl($p_array[0]-1) ?>">...</a></li>
             <?php endif?>
@@ -40,7 +40,7 @@
             <?php endforeach;?>
 
 
-            <?php if ($p_request && $p_request<$this->getLastPageNum()-3): ?>
+            <?php if ($p_request && $p_request<$this->getLastPageNum()-3 && end($p_array)!=$this->getLastPageNum()): ?>
                 <li><a href="<?php echo $this->getPageUrl($p_array[count($p_array)-1]+1) ?>">...</a></li>
                 <li><a href="<?php echo $this->getLastPageUrl() ?>"><?php echo $this->getLastPageNum() ?></a></li>
             <?php endif;?>
