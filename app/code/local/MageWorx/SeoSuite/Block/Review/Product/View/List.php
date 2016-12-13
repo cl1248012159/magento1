@@ -41,7 +41,8 @@ class MageWorx_SeoSuite_Block_Review_Product_View_List extends Mage_Review_Block
         if (Mage::getStoreConfigFlag('mageworx_seo/seosuite/reviews_friendly_urls')){
             $review = Mage::getModel('review/review')->load($id);
             $formattedTitle = $this->getProduct()->formatUrlKey($review->getTitle());
-            return Mage::getUrl() . implode('/', array($this->getProduct()->getUrlKey(), 'reviews', $formattedTitle, $id));
+            //return Mage::getUrl() . implode('/', array($this->getProduct()->getUrlKey(), 'reviews', $formattedTitle, $id));
+            return parent::getReviewUrl($id);
         } else {
             return parent::getReviewUrl($id);
         }

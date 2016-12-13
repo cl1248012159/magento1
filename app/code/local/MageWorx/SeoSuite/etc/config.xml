@@ -292,7 +292,7 @@ checkout_onepage_index]]></ignore_pages>
                 <category_link_title_enabled>0</category_link_title_enabled>
                 <product_meta_description>0</product_meta_description>
                 <product_canonical_url>1</product_canonical_url>
-                <reviews_friendly_urls>1</reviews_friendly_urls>
+                <reviews_friendly_urls>0</reviews_friendly_urls>
                 <pager_url_format></pager_url_format>
                 <enable_link_rel>1</enable_link_rel>
                 <layered_friendly_urls>1</layered_friendly_urls>

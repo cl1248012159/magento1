@@ -70,7 +70,7 @@ class MageWorx_SeoSuite_Controller_Router extends Mage_Core_Controller_Varien_Ro
             return false;
         }
 
-
+/***
         if ('reviews' == $d[1] && Mage::getStoreConfig('mageworx_seo/seosuite/reviews_friendly_urls')) {
             $product = Mage::getModel('catalog/product')->loadByAttribute('url_key', $d[0]);
             if (!$product || !$product->getId()) {
@@ -111,13 +111,10 @@ class MageWorx_SeoSuite_Controller_Router extends Mage_Core_Controller_Varien_Ro
 
             $request->setModuleName('review')
                     ->setControllerName('product')
-                    ->setAlias(
-                            Mage_Core_Model_Url_Rewrite::REWRITE_REQUEST_PATH_ALIAS, 'review'
-            );
-
+                    ->setAlias(Mage_Core_Model_Url_Rewrite::REWRITE_REQUEST_PATH_ALIAS, 'review');
             return true;
         }
-        
+ */
         switch ($d[0]) {
             case 'catalogsearch':
                 $request->setModuleName('catalogsearch')

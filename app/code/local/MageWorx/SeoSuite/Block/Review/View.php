@@ -47,7 +47,8 @@ class MageWorx_SeoSuite_Block_Review_View extends Mage_Review_Block_View
     public function getBackUrl()
     {
         if (Mage::getStoreConfig('mageworx_seo/seosuite/reviews_friendly_urls')) {
-            return Mage::getUrl() . implode('/', array($this->getProductData()->getUrlKey(), 'reviews'));
+            //return Mage::getUrl() . implode('/', array($this->getProductData()->getUrlKey(), 'reviews'));
+            return parent::getBackUrl();
         } else {
             return parent::getBackUrl();
         }

@@ -32,7 +32,7 @@
 class MageWorx_SeoSuite_Block_Review_Helper extends MageWorx_SeoSuite_Block_Review_Helper_Abstract
 {
     public function getReviewsUrl() {
-        if (Mage::getStoreConfig('mageworx_seo/seosuite/reviews_friendly_urls')) {            
+        if (Mage::getStoreConfig('mageworx_seo/seosuite/reviews_friendly_urls')) {
             $suffix = Mage::getStoreConfig('catalog/seo/product_url_suffix');  
             $productUrl = $this->getProduct()->getProductUrl();
             $productUrl = ($suffix && substr($productUrl, -(strlen($suffix)))==$suffix?substr($productUrl, 0, -(strlen($suffix))):$productUrl);
@@ -46,7 +46,8 @@ class MageWorx_SeoSuite_Block_Review_Helper extends MageWorx_SeoSuite_Block_Revi
                 $path[] = 'category';
                 $path[] = $this->getProduct()->getCategory()->getUrlKey();
             }
-            return Mage::getUrl() . implode('/', $path);            
+            //return Mage::getUrl() . implode('/', $path);
+            return parent::getReviewsUrl();
         } else {
             return parent::getReviewsUrl();
         }
