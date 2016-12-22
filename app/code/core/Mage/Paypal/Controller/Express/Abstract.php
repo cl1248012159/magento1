@@ -109,6 +109,8 @@ abstract class Mage_Paypal_Controller_Express_Abstract extends Mage_Core_Control
             if ($token && $url = $this->_checkout->getRedirectUrl()) {
                 $this->_initToken($token);
                 $this->getResponse()->setRedirect($url);
+                //生成订单
+                Mage::getSingleton('checkout/type_onepage')->saveOrder();
                 return;
             }
         } catch (Mage_Core_Exception $e) {
