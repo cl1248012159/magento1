@@ -1,0 +1,174 @@
+<?php
+$tags=$this->getTags();
+?>
+<div class="entity-edit">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('首页 Tag 信息') ?></h4>
+    </div>
+    <div class="box">
+        <div class="hor-scroll">
+            <table class="dynamic-grid" cellspacing="0" id="attribute-labels-table">
+                <tr>
+                    <th>主标题</th>
+                    <th>频道</th>
+                    <th>启用</th>
+                </tr>
+                <tr>
+                    <td><input name="main_title" type="text" style="width: 300px" value="<?php echo $tags["main_title"] ?>"></td>
+                    <td>
+                        <select  name="channel" id="channel">
+                            <option value="0">请选择</option>
+                            <option value="3" <?php if($tags["channel"]==3){ ?> selected="selected"  <?php } ?>>女士</option>
+                            <option value="4" <?php if($tags["channel"]==4){ ?> selected="selected"  <?php } ?>>男士</option>
+                            <option value="8"  <?php if($tags["channel"]==8){ ?> selected="selected"  <?php } ?>>创意生活</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select  name="status" id="status">
+                            <option  value="1"  <?php if($tags["status"]==1){ ?> selected="selected"  <?php } ?>>启用</option>
+                            <option value="0"  <?php if($tags["status"]==0){ ?> selected="selected"  <?php } ?>>停用</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<br/>
+<div class="entity-edit" id="matage-options-panel">
+    <div class="entry-edit-head">
+        <h4 class="icon-head head-edit-form fieldset-legend"><?php echo $this->__('管理标题') ?></h4>
+    </div>
+    <div class="box">
+        <div class="hor-scroll">
+            <table class="dynamic-grid" cellspacing="0"  cellpadding="0">
+                <tr id="attribute-options-table">
+                    <th><?php echo $this->__('标题') ?></th>
+                    <th><?php echo $this->__('url链接') ?></th>
+                    <th><?php echo $this->__('显示顺序') ?></th>
+                    <th>
+                            <?php echo $this->getAddNewButtonHtml() ?>
+                    </th>
+                </tr>
+                <?php foreach($tags['contents'] as $key=>$item){ ?>
+                <?php
+                    $content=explode('||',$item);
+                    ?>
+                    <tr class="option-row">
+                        <td><input style="width: 300px" name="option[title][option_<?php echo $key ?>]" value="<?php echo $content[0] ?>"  type="text" /></td>
+                        <td><input style="width: 300px" type="text" name="option[link][option_<?php echo $key ?>]" value="<?php echo $content[1] ?>" /></td>
+                        <td><input style="width: 300px" type="text" name="option[position][option_<?php echo $key ?>]" value="<?php echo $content[2] ?>" /></td>
+                        <td class="a-left">
+                            <input type="hidden" class="delete-flag" name="option[delete][option_<?php echo $key ?>]" value="" />
+                            <?php echo $this->getDeleteButtonHtml() ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </table>
+        </div>
+        <input type="hidden" id="option-count-check" value="" />
+    </div>
+</div>
+<script type="text/javascript">
+    //<![CDATA[
+    var optionDefaultInputType = 'radio';
+    // IE removes quotes from element.innerHTML whenever it thinks they're not needed, which breaks html.
+    var templateText =
+        '<tr class="option-row">'+
+        '<td><input style="width: 300px" name="option[title][{{id}}]" value="" class="input-text" type="text" /><\/td>'+
+
+        '<td><input style="width: 300px" type="text" name="option[link][{{id}}]" value="" /><\/td>'+
+        '<td><input style="width: 300px" type="text" name="option[position][{{id}}]" value="" /><\/td>'+
+        '<td class="a-left" id="delete_button_container_{{id}}">'+
+        '<input type="hidden" class="delete-flag" name="option[delete][{{id}}]" value="" />'+
+
+        '<?php echo Mage::helper('core')->jsQuoteEscape($this->getDeleteButtonHtml()) ?>'+
+        '<\/td>'+
+        '<\/tr>';
+
+    var attributeOption = {
+        table : $('attribute-options-table'),
+        templateSyntax : /(^|.|\r|\n)({{(\w+)}})/,
+        templateText : templateText,
+        itemCount : <?php echo count($tags['contents']) ?>,
+        totalItems : <?php echo count($tags['contents']) ?>,
+        isReadOnly: <?php echo (int)$this->getReadOnly(); ?>,
+        add : function(data) {
+            this.template = new Template(this.templateText, this.templateSyntax);
+            var isNewOption = false;
+            if(!data.id){
+                data = {};
+                data.id  = 'option_'+this.itemCount;
+                isNewOption = true;
+            }
+            if (!data.intype)
+                data.intype = optionDefaultInputType;
+            Element.insert(this.table, {after: this.template.evaluate(data)});
+            if (isNewOption && !this.isReadOnly) {
+                this.enableNewOptionDeleteButton(data.id);
+            }
+            this.bindRemoveButtons();
+            this.itemCount++;
+            this.totalItems++;
+            this.updateItemsCountField();
+        },
+        remove : function(event){
+            var element = $(Event.findElement(event, 'tr')); // !!! Button already
+            // have table parent in safari
+            // Safari workaround
+            element.ancestors().each(function(parentItem){
+                if (parentItem.hasClassName('option-row')) {
+                    element = parentItem;
+                    throw $break;
+                } else if (parentItem.hasClassName('box')) {
+                    throw $break;
+                }
+            });
+
+
+            if(element){
+                var elementFlags = element.getElementsByClassName('delete-flag');
+                if(elementFlags[0]){
+                    elementFlags[0].value=1;
+                }
+
+                element.addClassName('no-display');
+                element.addClassName('template');
+                element.hide();
+                this.totalItems--;
+                this.updateItemsCountField();
+            }
+        },
+        updateItemsCountField: function() {
+            if (this.totalItems > 0) {
+                $('option-count-check').value = '1';
+            } else {
+                $('option-count-check').value = '';
+            }
+        },
+        enableNewOptionDeleteButton: function(id) {
+            $$('#delete_button_container_' + id + ' button').each(function(button) {
+                button.enable();
+                button.removeClassName('disabled');
+            });
+        },
+        bindRemoveButtons : function(){
+            var buttons = $$('.delete-option');
+            for(var i=0;i<buttons.length;i++){
+                if(!$(buttons[i]).binded){
+                    $(buttons[i]).binded = true;
+                    Event.observe(buttons[i], 'click', this.remove.bind(this));
+                }
+            }
+        }
+
+    }
+
+    attributeOption.bindRemoveButtons();
+
+    if($('add_new_option_button')){
+        Event.observe('add_new_option_button', 'click', attributeOption.add.bind(attributeOption));
+    };
+    //]]>
+</script>

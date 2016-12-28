@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<layout>
+    <!--Here, we reference the XML node path of our route-->
+    <adminhtml_webhome_index>
+        <reference name="content">
+            <!-- We also reference our block by namespacename_modulename/adminhtml_controllername, and name it uniquely -->
+            <block type="webhome/adminhtml_webhome" name="webhome_index" />
+        </reference>
+    </adminhtml_webhome_index>
+
+    <adminhtml_webhome_edit>
+        <reference name="content">
+            <block type="webhome/adminhtml_webhome_edit" name="webhome_edit" />
+        </reference>
+    </adminhtml_webhome_edit>
+
+</layout>
