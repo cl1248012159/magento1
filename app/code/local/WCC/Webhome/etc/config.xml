@@ -19,9 +19,6 @@
                     <webhome>
                         <table>sales_flat_quote</table>
                     </webhome>
-                    <webhomeitems>
-                        <table>sales_flat_quote_item</table>
-                    </webhomeitems>
                 </entities>
             </webhome_resource>
         </models>
