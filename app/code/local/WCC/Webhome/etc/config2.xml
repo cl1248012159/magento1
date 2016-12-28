@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <WCC_Webhome>
+            <version>0.1.2</version>
+        </WCC_Webhome>
+    </modules>
+
+   <global>
+        <models>
+            <webhome>
+                <class>WCC_Webhome_Model</class>
+                <resourceModel>webhome_resource</resourceModel>
+            </webhome>
+
+            <webhome_resource>
+                <class>WCC_Webhome_Model_Resource</class>
+                <entities>
+                    <webhome>
+                        <table>web_home_data</table>
+                    </webhome>
+                    <webhomebanner>
+                        <table>web_home_banner</table>
+                    </webhomebanner>
+                    <hometag>
+                        <table>web_home_tag</table>
+                    </hometag>
+                    <pcmenu>
+                        <table>web_pc_menu</table>
+                    </pcmenu>
+                </entities>
+            </webhome_resource>
+
+        </models>
+
+        <resources>
+            <webhome_setup>
+                <setup>
+                    <module>WCC_Webhome</module>
+                    <class>Mage_Core_Model_Resource_Setup</class>
+                </setup>
+            </webhome_setup>
+        </resources>
+
+       <blocks>
+            <webhome>
+                <class>WCC_Webhome_Block</class>
+            </webhome>
+        </blocks>
+        <helpers>
+            <webhome>
+                <class>WCC_Webhome_Helper</class>
+            </webhome>
+        </helpers>
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <!-- This is how we load our Adminhtml controllers -->
+                    <modules>
+                        <webhome before="Mage_Adminhtml">WCC_Webhome_Adminhtml</webhome>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <layout>
+            <updates>
+                <webhome>
+                    <file>wcc_webhome.xml</file>
+                </webhome>
+            </updates>
+        </layout>
+    </adminhtml>
+
+</config>
