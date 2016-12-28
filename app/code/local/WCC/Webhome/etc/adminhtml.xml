@@ -7,7 +7,7 @@
             <depends><module>Mage_Sales</module></depends>
             <children>
                 <webhome module="webhome">
-                    <title>nopay order</title>
+                    <title>未支付</title>
                     <sort_order>0</sort_order>
                     <action>adminhtml/webhome/index</action>
                 </webhome>
