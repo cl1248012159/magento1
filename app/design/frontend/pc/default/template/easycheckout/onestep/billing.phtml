@@ -180,7 +180,7 @@
                     <?php endif ?>
                         <?php if(Mage::getStoreConfig('checkout/options/guest_checkout') == 1): ?>
                             <li class="section_2">
-                                <input type="checkbox" name="billing[register]" <?php if($reg==1){echo "checked";} ?> value="1" title="<?php echo $this->__('Create an account') ?>" id="billing:register" class="checkbox" onclick="billing.register()" /><label for="billing:register"><?php echo $this->__('Create an Account') ?></label>
+                                <input type="checkbox" name="billing[register]" value="1" title="<?php echo $this->__('Create an account') ?>" id="billing:register" class="checkbox" onclick="billing.register()" /><label for="billing:register"><?php echo $this->__('Create an Account') ?></label>
                             </li>
                        <?php else: ?>
                             <input type="hidden" name="billing[register]" value="1" id="billing:register" />
@@ -192,7 +192,7 @@
                                 <input type="hidden" name="billing[confirm_password]"  value="<?php echo  $password; ?>" />
                               </li>
                         <?php else: ?>
-                            <li class="section_2" id="register-customer-password" style="<?php if($reg==1){echo "display:block;";}else{echo "display:none;";} ?>">
+                            <li class="section_2" id="register-customer-password" style="<?php echo "display:none;"; ?>">
                                 <div class="section_1">
                                     <label for="billing:customer_password"><?php echo $this->__('Password') ?><span class="required">*</span></label>
                                     <div class="input-box">
