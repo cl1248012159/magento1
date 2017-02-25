@@ -47,9 +47,7 @@
                 width: 100%;
                 line-height: 30px;
                 margin-top: 10px;
-                a{
-                    text-decoration: underline;
-                }
+                a{  text-decoration: underline;}
 
                 .ratings,.no-rating{
                     float: left;
@@ -66,6 +64,10 @@
                 .ask-a-question{
                     float: left;
                     margin-left: 8px;
+                }
+                .customers-feedback-gallery{
+                  float:left;clear:both;
+                  img{max-height:50px;}
                 }
             }
 
@@ -302,7 +304,6 @@
                         background: url(../images/commont/kai.jpg) no-repeat 30px center;
                     }
                 }
-
                 .btns{
                     position:relative;
                     .validation-message{
@@ -374,8 +375,10 @@
                         }
                     }
                 }
-
-                
+                .made-to-order-time{
+                    display:none;line-height:50px;font-size:14px;
+                    .time{color:$style_corlor;}
+                }
             }
         }
 
@@ -818,7 +821,7 @@
                 width:24%;
                 margin-right: 1%;
                 margin-bottom: 10px;
-                height:530px;
+                //height:530px;
                 overflow:hidden;
                 border:1px solid #ddd;
                 border-radius:3px;
@@ -859,6 +862,10 @@
                     text-align: right;
                 }
             }    
+        }
+        .brand100{
+          display:block;width:100%;margin-bottom:10px;
+          img{width:100%;}
         }
     }
 

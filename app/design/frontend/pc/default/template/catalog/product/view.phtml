@@ -74,6 +74,7 @@ if($result){
                 <div class="commont">
                     <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
                     <div class="ask-a-question"> |&nbsp; <a href="#askaquestion">Ask a question</a></div>
+                    <a class="customers-feedback-gallery" href="<?php echo $this->getUrl('customers-feedback-gallery')?>"><img src="/skin/frontend/pc/default/images/page/share-to-win.png"/></a>
                 </div>
 
                 <div class="product_price">
@@ -81,12 +82,12 @@ if($result){
                 </div>
 
 
-                <?php if ($_product->getShortDescription()):?>
+                <?php /* if ($_product->getShortDescription()):?>
                     <div class="short-description">
                         <h2><?php echo $this->__('Quick Overview') ?></h2>
                         <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
                     </div>
-                <?php endif;?>
+                <?php endif;*/?>
 
                 <?php if ($_product->isSaleable() && $this->hasOptions()):?>
                     <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
