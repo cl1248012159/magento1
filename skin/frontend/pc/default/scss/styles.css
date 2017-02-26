@@ -2830,7 +2830,7 @@ tr.summary-details-excluded { font-style: italic; }
 .page .product-view .product-shop .new-product-options-bottom .btns .wishlist { display: inline-block; height: 35px; line-height: 35px; text-align: center; padding: 0 15px; color: #666; font-size: 15px; }
 .page .product-view .product-shop .new-product-options-bottom .btns .wishlist span { font-size: 30px; line-height: 30px; color: #f39; padding: 0 5px; }
 .page .product-view .product-shop .new-product-options-bottom .made-to-order-time { line-height: 50px; font-size: 14px; }
-.page .product-view .product-shop .new-product-options-bottom .made-to-order-time .time { color: #f39; font-size: 16px; }
+.page .product-view .product-shop .new-product-options-bottom .made-to-order-time .time { color: #f39; ffont-size: 15px; font-weight: bold; }
 .page .product-view .new-product-collateral .dectits { border-bottom: 1px solid #cccccc; margin-bottom: 12px; text-align: center; height: 13px; }
 .page .product-view .new-product-collateral .dectits span { height: 25px; line-height: 25px; display: inline-block; padding: 0 5px; background-color: #f39; font-size: 14px; color: #fff; font-family: georgia; border-radius: 3px; font-weight: normal; text-transform: uppercase; margin-bottom: -12px; }
 .page .product-view .new-product-collateral .box-collateral h3.hua { font-size: 12px; background: url(../images/commont/dehua.png) no-repeat 0 center; padding-left: 12px; font-weight: bold; font-family: Verdana, Geneva, sans-serif; clear: both; margin: 20px 0 0; }
