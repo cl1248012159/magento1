@@ -84,7 +84,7 @@
                 <li>http://www.instagram.com/</li>
             </ul>
         </div>
-        <p class="DetailTitle cls"> <span class="Title left">Step two</span>Send the link of reviews to <a style="color:#f39; text-decoration:underline;" href="mailto:<?php echo Mage::getStoreConfig('smtppro/general/smtp_username');?>"><?php echo Mage::getStoreConfig('smtppro/general/smtp_username');?></a></p>
+        <p class="DetailTitle cls"> <span class="Title left">Step two</span>Send the link of reviews to <a style="color:#f39; text-decoration:underline;" href="mailto:<?php echo Mage::getModel('core/variable')->loadByCode('support-email')->getValue('text');?>"><?php echo Mage::getModel('core/variable')->loadByCode('support-email')->getValue('text');?></a></p>
         <p class="DetailTitle cls"> <span class="Title left">Step three</span>The eligible entries will be notified via email after verification.</p>
         <p>And as rewards, a US$15 coupon will be given to the customers who sent awesome reviews with photo shared. A US$10 coupon will be given to those who write remarkable reviews or sharing excellent photos. However the great review texts sender will receive US$5 coupons.The selected reviews will be published on D-daydress customers gallery．</p>
 

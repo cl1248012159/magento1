@@ -46,8 +46,8 @@
                     <div class="and"></div>
                     <p>
                         <span></span>
-                        <a rel="nofollow" href="mailto:<?php echo Mage::getStoreConfig('trans_email/ident_general/email');?>">
-                            Email: <?php echo Mage::getStoreConfig('trans_email/ident_general/email');?>
+                        <a rel="nofollow" href="mailto:<?php echo Mage::getModel('core/variable')->loadByCode('support-email')->getValue('text');?>">
+                            Email: <?php echo Mage::getModel('core/variable')->loadByCode('support-email')->getValue('text');?>
                         </a>
                     </p>
                     <script>
