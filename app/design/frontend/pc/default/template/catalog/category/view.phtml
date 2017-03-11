@@ -34,73 +34,19 @@ $cur_cat_pro_size = Mage::getSingleton('catalog/layer')->getProductCollection()-
                 <span id="countdownie" class="PositionAbsolute"></span>
             </div>
             <script type="text/javascript">
-                function countdown(id,theyear,themonth,theday,thehour,themin,thesec){
-                    id=id;
-                    yr=theyear;
-                    mo=themonth;
-                    da=theday;
-                    ho=thehour;
-                    mi=themin;
-                    se=thesec;
-                    var montharray=new Array("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec");
-                    var today=new Date();
-                    var todayy=today.getYear();
-                    if (todayy < 1000)
-                        todayy+=1900;
-                    var todaym=today.getMonth();
-                    var todayd=today.getDate();
-                    var todayh=today.getHours();
-                    var todaymin=today.getMinutes();
-                    var todaysec=today.getSeconds();
-                    var todaystring=montharray[todaym]+" "+todayd+", "+todayy+" "+todayh+":"+todaymin+":"+todaysec;
-                    futurestring=montharray[mo-1]+" "+da+", "+yr+" "+ho+":"+mi+":"+se;
-                    dd=Date.parse(futurestring)-Date.parse(todaystring);
-                    dday=Math.floor(dd/(60*60*1000*24)*1);
-                    dhour=Math.floor((dd%(60*60*1000*24))/(60*60*1000)*1);
-
-                    if(0<dhour && dhour<10){dhour="0"+dhour;}
-                    dmin=Math.floor(((dd%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
-                    if(0<dmin && dmin<10){dmin="0"+dmin;}
-                    dsec=Math.floor((((dd%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
-                    if(0<dsec && dsec<10){dsec = "0"+dsec;}
-
-
-
-                    if(dday<=0 && dhour<=0&&dmin<=0&&dsec<=1&&todayd==da){
-                        document.getElementById(id).innerHTML='';
-                        return;
-                    }else if (dday<=-1){
-                        document.getElementById(id).innerHTML="";
-                        return;
-                    }else{
-                        var countdown_html = '';
-                        if(dday>0){
-                            countdown_html = '<span class="dday">'+dday+'</span>';
-                            countdown_html +='<span class="text_day">D</span>';
-                        }
-                        countdown_html  +=  '<span class="dhour">'+dhour+'</span>'+
-                                            '<span class="dmin">'+dmin+'</span>'+
-                                            '<span class="dsec">'+dsec+'</span>';
-                        document.getElementById(id).innerHTML = countdown_html;
-                        setTimeout(function(){countdown(id,yr,mo,da,ho,mi,se)},1000);
-                    }
-                }
-                <?php $date_time = strtotime($show_countdown->getAltText()); ?>
-                countdown('countdownie',
-                    <?php echo date("Y",$date_time)?>,
-                    <?php echo date("m",$date_time)?>,
-                    <?php echo date("d",$date_time)?>,
-                    <?php echo date("H",$date_time)?>,
-                    <?php echo date("i",$date_time)?>,
-                    <?php echo date("s",$date_time)?>);
+                jQuery(document).ready(function(){
+                    <?php $date_time = strtotime($show_countdown->getAltText()); ?>
+                    setInterval(function(){countdown('countdownie',
+                        <?php echo date("Y",$date_time)?>,
+                        <?php echo date("m",$date_time)?>,
+                        <?php echo date("d",$date_time)?>,
+                        <?php echo date("H",$date_time)?>,
+                        <?php echo date("i",$date_time)?>,
+                        <?php echo date("s",$date_time)?>)},1000);
+                });
             </script>
         </div>
     <?php endif;?>
-
-
-
-
-
 
 </div>
 

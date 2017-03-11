@@ -1,3 +1,32 @@
+.top_countdown{
+  display: block;width: 100%;height: 47px;min-width: 1000px;background-repeat:no-repeat;background-position: top center;background-color: #eeddd2;
+  .adv{
+    position: relative;width: 1000px;margin: 0 auto;
+    .advBanner{
+      position: relative;width: 1000px;height: 47px;margin: 0 auto;
+      a:first-child{display: block;width: 1000px;height: 47px;margin: 0 auto;}
+      a.CloseBtn{display:block; width:12px; height:12px; cursor:pointer;position: absolute;z-index: 2;top: 19px;right: 5px;}
+    }
+    .time-list{
+      position: absolute;right: 53px;top: 12px;
+      .PositionAbsolute{
+        position: absolute;right:0;
+        span{
+          color: #ee365b;  font-weight: normal;font-size: 22px;
+          &.dday{ padding:0 5px 0 0;}
+          &.text_day{padding:0 10px 0 0;}
+          &.dhour{
+            &:after{content:':';}
+          }
+          &.dmin{
+            &:after{content:':';}
+          }
+        }
+      }
+    }
+  }
+}
+
 .new_header{
   width:100%;
   max-width: $style_width;

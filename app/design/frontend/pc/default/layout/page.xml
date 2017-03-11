@@ -63,6 +63,7 @@ Default layout, loads most of the pages
 
             <block type="core/text_list" name="after_body_start" as="after_body_start" translate="label">
                 <label>Page Top</label>
+                <block type="core/template" name="top_ads" as="top_ads" template="page/home/top_ads.phtml" />
             </block>
 
             <block type="page/html_notices" name="global_notices" as="global_notices" template="page/html/notices.phtml" />

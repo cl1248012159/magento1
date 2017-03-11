@@ -2390,43 +2390,56 @@ tr.summary-details-excluded { font-style: italic; }
 
 .MB10 { margin-bottom: 10px; }
 
-.W10 { width: 10%; }
+.W10 { display: block; width: 10%; }
 
-.W15 { width: 15%; }
+.W15 { display: block; width: 15%; }
 
-.W20 { width: 20%; }
+.W20 { display: block; width: 20%; }
 
-.W25 { width: 25%; }
+.W25 { display: block; width: 25%; }
 
-.W30 { width: 30%; }
+.W30 { display: block; width: 30%; }
 
-.W35 { width: 35%; }
+.W35 { display: block; width: 35%; }
 
-.W40 { width: 40%; }
+.W40 { display: block; width: 40%; }
 
-.W45 { width: 45%; }
+.W45 { display: block; width: 45%; }
 
-.W50 { width: 50%; }
+.W50 { display: block; width: 50%; }
 
-.W55 { width: 55%; }
+.W55 { display: block; width: 55%; }
 
-.W60 { width: 60%; }
+.W60 { display: block; width: 60%; }
 
-.W65 { width: 65%; }
+.W65 { display: block; width: 65%; }
 
-.W70 { width: 70%; }
+.W70 { display: block; width: 70%; }
 
-.W75 { width: 75%; }
+.W75 { display: block; width: 75%; }
 
-.W80 { width: 80%; }
+.W80 { display: block; width: 80%; }
 
-.W85 { width: 85%; }
+.W85 { display: block; width: 85%; }
 
-.W90 { width: 90%; }
+.W90 { display: block; width: 90%; }
 
-.W95 { width: 95%; }
+.W95 { display: block; width: 95%; }
 
-.W100 { width: 100%; }
+.W100 { display: block; width: 100%; }
+
+.top_countdown { display: block; width: 100%; height: 47px; min-width: 1000px; background-repeat: no-repeat; background-position: top center; background-color: #eeddd2; }
+.top_countdown .adv { position: relative; width: 1000px; margin: 0 auto; }
+.top_countdown .adv .advBanner { position: relative; width: 1000px; height: 47px; margin: 0 auto; }
+.top_countdown .adv .advBanner a:first-child { display: block; width: 1000px; height: 47px; margin: 0 auto; }
+.top_countdown .adv .advBanner a.CloseBtn { display: block; width: 12px; height: 12px; cursor: pointer; position: absolute; z-index: 2; top: 19px; right: 5px; }
+.top_countdown .adv .time-list { position: absolute; right: 53px; top: 12px; }
+.top_countdown .adv .time-list .PositionAbsolute { position: absolute; right: 0; }
+.top_countdown .adv .time-list .PositionAbsolute span { color: #ee365b; font-weight: normal; font-size: 22px; }
+.top_countdown .adv .time-list .PositionAbsolute span.dday { padding: 0 5px 0 0; }
+.top_countdown .adv .time-list .PositionAbsolute span.text_day { padding: 0 10px 0 0; }
+.top_countdown .adv .time-list .PositionAbsolute span.dhour:after { content: ':'; }
+.top_countdown .adv .time-list .PositionAbsolute span.dmin:after { content: ':'; }
 
 .new_header { width: 100%; max-width: 1365px; }
 .new_header .header_top { height: 33px; line-height: 33px; }

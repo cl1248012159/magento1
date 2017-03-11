@@ -4,53 +4,42 @@
 
 .wrapper{
     position: relative;
-    // background: rgba(0, 0, 0, 0.1);
 }
 .top_bg{
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background:#4c5154;
-    width:100%;
-    height:$top_height;
-    z-index: -1;
+    position: absolute;  top: 0;  left: 0;  right: 0;  background:#4c5154;  width:100%;  height:$top_height;  z-index: -1;
 }
 .page{
     max-width: $style_width; 
     min-width:900px;
     margin: 0 auto;
-    //box-shadow: 0px 0px 10px #eeeeee;
 }
 @media only screen and (max-width: $style_width){
-  .page{
-        padding:0 60px;
-    }
+  .page{  padding:0 60px;  }
 }
 
 .M5{margin:5px;}
 .MT10{margin-top:10px;}
 .MB10{margin-bottom:10px;}
 
-.W10{width:10%;}
-.W15{width:15%;}
-.W20{width:20%;}
-.W25{width:25%;}
-.W30{width:30%;}
-.W35{width:35%;}
-.W40{width:40%;}
-.W45{width:45%;}
-.W50{width:50%;}
-.W55{width:55%;}
-.W60{width:60%;}
-.W65{width:65%;}
-.W70{width:70%;}
-.W75{width:75%;}
-.W80{width:80%;}
-.W85{width:85%;}
-.W90{width:90%;}
-.W95{width:95%;}
-.W100{width:100%;}
+.W10{display:block;width:10%;}
+.W15{display:block;width:15%;}
+.W20{display:block;width:20%;}
+.W25{display:block;width:25%;}
+.W30{display:block;width:30%;}
+.W35{display:block;width:35%;}
+.W40{display:block;width:40%;}
+.W45{display:block;width:45%;}
+.W50{display:block;width:50%;}
+.W55{display:block;width:55%;}
+.W60{display:block;width:60%;}
+.W65{display:block;width:65%;}
+.W70{display:block;width:70%;}
+.W75{display:block;width:75%;}
+.W80{display:block;width:80%;}
+.W85{display:block;width:85%;}
+.W90{display:block;width:90%;}
+.W95{display:block;width:95%;}
+.W100{display:block;width:100%;}
 
 
 @import "_header.scss";
