@@ -556,3 +556,17 @@
 .std{
     padding:10px;width:100%;
 }
+.recent_orders,.review_contents{display:none;margin-top: 10px;}
+.recent_order{
+    float:left;width:100%;
+    img{float:left;width:30% !important;}
+    .proinfo{
+        float:right;width:70%;padding: 0 8px;
+        span{display:block;}
+        .name{color:#666;}
+    }
+}
+.review_content{
+    float:left;width:100%;max-width:300px;
+    .rating-box{float:left;margin-top: 3px;margin-right:20px;}
+}

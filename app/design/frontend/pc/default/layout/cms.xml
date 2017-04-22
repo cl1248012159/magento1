@@ -63,7 +63,9 @@ Default layout, loads most of the pages
             <block type="core/text_list" before="-" name="homepage" as="homepage" translate="label">
                 <block type="core/template" name="carousel" template="page/home/banners.phtml"/>
                 <block type="catalog/product_list" name="homepage_products" template="page/home/products.phtml"/>
-                <block type="core/template" name="homepage_review" template="page/home/review.phtml"/>
+                <block type="core/template" name="homepage_review_image" template="page/home/review_image.phtml"/>
+                <block type="core/template" name="recent_orders" template="page/home/recent_orders.phtml"/>
+                <block type="core/template" name="homepage_review_content" template="page/home/review_content.phtml"/>
             </block>
         </reference>
     </cms_index_index>

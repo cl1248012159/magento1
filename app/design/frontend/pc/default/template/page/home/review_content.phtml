@@ -1,0 +1,39 @@
+<?php
+$_reviewsCollection = Mage::getModel('review/review')->getCollection()
+    ->addStoreFilter(Mage::app()->getStore()->getId())
+    ->addStatusFilter(Mage_Review_Model_Review::STATUS_APPROVED)
+    ->setDateOrder()
+    ->setPageSize(30);
+$_items =  $_reviewsCollection->getItems();
+?>
+<?php if(count($_items)):?>
+    <div class="home_product_title"><h3>Customer Testimonials</h3></div>
+    <div class="review_contents">
+        <?php foreach($_items as $review): ?>
+            <a class="review_content item" href="<?php
+            echo Mage::getModel('catalog/product')->setStoreId(Mage::app()->getStore()->getId())->load($review->getEntityPkValue())->getProductUrl();?>#review-form">
+                <div class="detail"><?php echo $review->getDetail()?></div>
+                <div class="rating-box"><div class="rating" style="width:100%;"></div></div>
+                <span>By <?php echo $review->getNickname()?></span>
+            </a>
+        <?php endforeach;?>
+    </div>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.review_contents').each(function() {
+                if(jQuery('.item', this).length > 0) {
+                    jQuery(this).owlCarousel({
+                        loop: true,
+                        items: 4,
+                        nav: false,
+                        dots: false,
+                        margin:10,
+                        autoplay: true,
+                        autoplayTimeout:5000
+                    });
+                }
+            });
+        });
+    </script>
+<?php endif;?>
+

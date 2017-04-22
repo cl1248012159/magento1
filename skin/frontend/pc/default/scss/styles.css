@@ -1130,14 +1130,14 @@ tr.summary-details-excluded { font-style: italic; }
 
 .old-price .price-label { white-space: nowrap; color: #999; }
 
-.old-price .price { font-weight: bold; color: #c76200; text-decoration: line-through; }
+.old-price .price { font-size: 12px; font-weight: normal; color: #999; text-decoration: line-through; }
 
 /* Special price */
 .special-price { margin: 0; padding: 3px 0; }
 
 .special-price .price-label { font-size: 13px; font-weight: bold; white-space: nowrap; color: #cd5033; }
 
-.special-price .price { font-size: 13px; font-weight: bold; color: #c76200; }
+.special-price .price { font-size: 13px; font-weight: bold; color: #f39; }
 
 /* Minimal price (as low as) */
 .minimal-price { margin: 0; }
@@ -2662,6 +2662,17 @@ tr.summary-details-excluded { font-style: italic; }
 .review_btn .view { background: #000; color: #fff; }
 
 .std { padding: 10px; width: 100%; }
+
+.recent_orders, .review_contents { display: none; margin-top: 10px; }
+
+.recent_order { float: left; width: 100%; }
+.recent_order img { float: left; width: 30% !important; }
+.recent_order .proinfo { float: right; width: 70%; padding: 0 8px; }
+.recent_order .proinfo span { display: block; }
+.recent_order .proinfo .name { color: #666; }
+
+.review_content { float: left; width: 100%; max-width: 300px; }
+.review_content .rating-box { float: left; margin-top: 3px; margin-right: 20px; }
 
 .register_page { display: inline-block; width: 100%; text-align: left; padding: 0 32px; }
 .register_page h1 { font: 18px Georgia; color: #333; margin: 20px 0; }

@@ -1,0 +1,56 @@
+<?php
+
+$_orders = Mage::getResourceModel('sales/order_collection')
+            ->addAttributeToFilter('state',array('in' => array('new','processing','complete')))
+            ->addAttributeToSort('created_at', 'desc')
+            ->setPage(1,30);
+?>
+
+
+<?php if( sizeof($_orders->getItems()) > 0 ):?>
+    <div class="home_product_title"><h3>Recent Orders</h3></div>
+    <div class="recent_orders">
+        <?php foreach ($_orders as $order):?>
+            <?php foreach ($order->getParentItemsRandomCollection(20) as $_item): ?>
+
+                <?php $product2 =  Mage::getModel('catalog/product')->load($_item->getProduct()->getId());?>
+                <a class="recent_order item" href="<?php echo $product2->getProductUrl();?>">
+                    <img src="<?php echo Mage::helper('catalog/image')->init($product2, 'small_image')->resize(90,120) ;?>">
+                    <span class="proinfo">
+                        <span class="name"><?php echo $product2->getName();?></span>
+                        <?php
+                        $price = Mage::helper('core')->formatPrice($product2->getPrice());
+                        $final_price = Mage::helper('core')->formatPrice($product2->getFinalPrice());
+                        ?>
+                        <span class="old-price"><?php echo $price;?></span>
+                        <?php if($price != $final_price):?>
+                            <span class="special-price"><?php echo $final_price;?></span>
+                        <?php endif;?>
+                    </span>
+                </a>
+
+            <?php endforeach;?>
+        <?php endforeach;?>
+    </div>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('.recent_orders').each(function() {
+                if(jQuery('.item', this).length > 0) {
+                    jQuery(this).owlCarousel({
+                        loop: true,
+                        items: 4,
+                        nav: false,
+                        dots: false,
+                        margin:10,
+                        autoplay: true,
+                        autoplayTimeout:8000
+                    });
+                }
+            });
+        });
+    </script>
+<?php endif;?>
+
+
+
+
