@@ -1,9 +1,31 @@
 <?php
-
 $_orders = Mage::getResourceModel('sales/order_collection')
+            ->addAttributeToSelect('*','shipping_firstname')
+            ->joinAttribute(
+                'shipping_firstname',
+                'order_address/firstname',
+                'shipping_address_id',
+                null,
+                'left'
+            )
+            ->joinAttribute(
+                'shipping_middlename',
+                'order_address/middlename',
+                'shipping_address_id',
+                null,
+                'left'
+            )
+            ->joinAttribute(
+                'shipping_lastname',
+                'order_address/lastname',
+                'shipping_address_id',
+                null,
+                'left'
+            )
             ->addAttributeToFilter('state',array('in' => array('new','processing','complete')))
             ->addAttributeToSort('created_at', 'desc')
-            ->setPage(1,30);
+            ->setPage(1,10);
+
 ?>
 
 
@@ -11,6 +33,11 @@ $_orders = Mage::getResourceModel('sales/order_collection')
     <div class="home_product_title"><h3>Recent Orders</h3></div>
     <div class="recent_orders">
         <?php foreach ($_orders as $order):?>
+            <?php $shipto = '';?>
+            <?php if($order->getShippingAddress()): ?>
+                <?php $shipto = $order->getShippingAddress()->getData('country_id').' '.$order->getShippingAddress()->getName();?>
+            <?php endif;?>
+           
             <?php foreach ($order->getParentItemsRandomCollection(20) as $_item): ?>
 
                 <?php $product2 =  Mage::getModel('catalog/product')->load($_item->getProduct()->getId());?>
@@ -26,6 +53,7 @@ $_orders = Mage::getResourceModel('sales/order_collection')
                         <?php if($price != $final_price):?>
                             <span class="special-price"><?php echo $final_price;?></span>
                         <?php endif;?>
+                        <span class="shippingto"><?php echo $shipto?'ship to '.$shipto:''  ;?></span>
                     </span>
                 </a>
 
@@ -42,7 +70,7 @@ $_orders = Mage::getResourceModel('sales/order_collection')
                         nav: false,
                         dots: false,
                         margin:10,
-                        autoplay: true,
+                        autoplay: false,
                         autoplayTimeout:8000
                     });
                 }
