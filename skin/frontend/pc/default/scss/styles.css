@@ -2930,6 +2930,7 @@ tr.summary-details-excluded { font-style: italic; }
 .recent_order .proinfo .shippingto { color: #666; font-size: 10px; }
 
 .review_content { float: left; width: 100%; max-width: 300px; }
+.review_content .detail { overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
 .review_content .rating-box { float: left; margin-top: 3px; margin-right: 20px; }
 
 .register_page { display: inline-block; width: 100%; text-align: left; padding: 0 32px; }

@@ -835,5 +835,6 @@
 }
 .review_content{
     float:left;width:100%;max-width:300px;
+    .detail{overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 3;-webkit-box-orient: vertical;}
     .rating-box{float:left;margin-top: 3px;margin-right:20px;}
 }
