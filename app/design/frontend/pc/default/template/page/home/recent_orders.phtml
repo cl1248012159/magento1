@@ -35,7 +35,11 @@ $_orders = Mage::getResourceModel('sales/order_collection')
         <?php foreach ($_orders as $order):?>
             <?php $shipto = '';?>
             <?php if($order->getShippingAddress()): ?>
-                <?php $shipto = $order->getShippingAddress()->getData('country_id').' '.$order->getShippingAddress()->getName();?>
+                <?php 
+                    $shipto = $order->getShippingAddress()->getData('country_id').
+                            '<i class="flag flag-'.strtolower($order->getShippingAddress()->getData('country_id')).'"></i> '.
+                            ucfirst($order->getShippingAddress()->getData('firstname'));
+                ?>
             <?php endif;?>
            
             <?php foreach ($order->getParentItemsRandomCollection(20) as $_item): ?>
@@ -45,6 +49,7 @@ $_orders = Mage::getResourceModel('sales/order_collection')
                     <img src="<?php echo Mage::helper('catalog/image')->init($product2, 'small_image')->resize(90,120) ;?>">
                     <span class="proinfo">
                         <span class="name"><?php echo $product2->getName();?></span>
+                        <span class="check-it">Check it</span>
                         <?php
                         $price = Mage::helper('core')->formatPrice($product2->getPrice());
                         $final_price = Mage::helper('core')->formatPrice($product2->getFinalPrice());

@@ -9,7 +9,7 @@
         <?php echo $CurrentCurrencyCode;?>
     </span>
     <div class="currency_list">
-        <?php foreach ($this->getCurrencies() as $_code => $_name): ?>
+        <?php foreach ($this->getCurrencies() as $_code => $_name):?>
             <?php if($CurrentCurrencyCode == $_code){continue;} ?>
             <a
                 style="background-image:url(<?php echo $skin_code_url.$_code.'.png'?>);"

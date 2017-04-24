@@ -66,7 +66,9 @@
                     onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
             <?php if ($this->helper('wishlist')->isAllow()) : ?>
                 <?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
-                <a class="wishlist" href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist"><span>♥</span>Add to Wishlist</a>
+                <a class="wishlist"
+                   href="<?php echo $_wishlistSubmitUrl ?>"
+                   onclick="productAddToCartForm.submitLight(this, this.href); return false;"><span>♥</span>Add to Wishlist</a>
             <?php endif; ?>
         </div>
 

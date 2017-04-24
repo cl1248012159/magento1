@@ -110,6 +110,7 @@
             <script>
                 jQuery(".header_menu ul li").on('mouseover',function(){
                     var level2 = jQuery(this).find('.level2');
+                    if(level2.html().length==0){return false;}
                     level2.show();
                     if(jQuery(this).index()<3){
                         return false;
