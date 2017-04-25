@@ -2925,9 +2925,9 @@ tr.summary-details-excluded { font-style: italic; }
 .recent_order img { float: left; width: 30% !important; }
 .recent_order .proinfo { float: right; width: 70%; padding: 0 8px; }
 .recent_order .proinfo span { display: block; }
-.recent_order .proinfo .name { color: #666; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-.recent_order .proinfo .check-it { text-align: right; color: #666; text-decoration: underline; }
-.recent_order .proinfo .shippingto { color: #666; font-size: 10px; }
+.recent_order .proinfo .name { overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.recent_order .proinfo .check-it { text-align: right; text-decoration: underline; }
+.recent_order .proinfo .shippingto { font-size: 10px; }
 
 .review_content { float: left; width: 100%; max-width: 300px; }
 .review_content .detail { overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }

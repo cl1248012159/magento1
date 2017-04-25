@@ -828,9 +828,9 @@
     .proinfo{
         float:right;width:70%;padding: 0 8px;
         span{display:block;}
-        .name{color:#666;overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
-        .check-it{text-align:right;color:#666;text-decoration: underline;}
-        .shippingto{color:#666;font-size:10px;}
+        .name{overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;}
+        .check-it{text-align:right;text-decoration: underline;}
+        .shippingto{font-size:10px;}
     }
 }
 .review_content{
