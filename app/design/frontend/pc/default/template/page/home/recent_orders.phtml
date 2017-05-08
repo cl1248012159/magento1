@@ -22,10 +22,10 @@ $_orders = Mage::getResourceModel('sales/order_collection')
                 null,
                 'left'
             )
+            ->addAttributeToFilter('customer_email',array('eq' => 'support@d-daydress.com'))
             ->addAttributeToFilter('state',array('in' => array('new','processing','complete')))
             ->addAttributeToSort('created_at', 'desc')
             ->setPage(1,10);
-
 ?>
 
 
