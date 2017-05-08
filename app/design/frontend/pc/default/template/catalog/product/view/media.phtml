@@ -3,6 +3,9 @@
 ?>
 
 <div class="estorm-zoom" data-config='{"colsnumber":"3", "zindex":"99"}'>
+    <?php if( in_array(211, $_product->getCategoryIds()) ):?>
+        <span class="shipwithin24hours"><img src="/skin/frontend/pc/default/images/catalog/shipwithin24hours.png"></span>
+    <?php endif;?>
     <div class="estorm-zoom-stage">
         <img class="m_image"
              data-bigurl="<?php echo $this->helper('catalog/image')->init($_product, 'image')->resize(600,800);?>"
@@ -10,36 +13,36 @@
     </div>
 
 
+
     <?php if(  $GalleryImages = $this->getGalleryImages()  ):?>
+        <div class="estorm-zoom-gallery">
+            <ul>
+                <?php $img_i=0; foreach ( $GalleryImages as $_image): ?>
+                    <?php if($img_i==0):?>
 
+                        <li class="item current">
+                            <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image',$_image->getFile())->resize(600,800); ?>" data-middle="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small_image',$_image->getFile())->resize(375,500); ?>">
+                                <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small_image',$_image->getFile())->resize(375,500); ?>" width="90" height="120">
+                            </a>
+                        </li>
+
+                    <?php else: ?>
+
+                        <li class="item">
+                            <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail',$_image->getFile())->resize(600,800); ?>">
+                                <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small_image',$_image->getFile())->resize(375,500); ?>"  width="90" height="120">
+                            </a>
+                        </li>
+
+                    <?php endif;?>
+                    <?php $img_i++; ?>
+
+
+
+                <?php endforeach; ?>
+            </ul>
+        </div>
     <?php endif; ?>
-    <div class="estorm-zoom-gallery">
-        <ul>
-            <?php $img_i=0; foreach ($this->getGalleryImages() as $_image): ?>
-                <?php if($img_i==0):?>
-
-                    <li class="item current">
-                        <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image',$_image->getFile())->resize(600,800); ?>" data-middle="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small_image',$_image->getFile())->resize(375,500); ?>">
-                            <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small_image',$_image->getFile())->resize(375,500); ?>" width="90" height="120">
-                        </a>
-                    </li>
-
-                <?php else: ?>
-
-                    <li class="item">
-                        <a href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail',$_image->getFile())->resize(600,800); ?>">
-                            <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'small_image',$_image->getFile())->resize(375,500); ?>"  width="90" height="120">
-                        </a>
-                    </li>
-
-                <?php endif;?>
-                <?php $img_i++; ?>
-
-
-
-            <?php endforeach; ?>
-        </ul>
-    </div>
 </div>
 
 <script>

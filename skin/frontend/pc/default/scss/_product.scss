@@ -1,4 +1,10 @@
-.estorm-zoom { width:485px; float:left; clear:both; background:#ffffff; }
+.estorm-zoom {
+    width:485px; float:left; clear:both; background:#ffffff;
+    .shipwithin24hours{
+        position: absolute;right: 0;top: 0;z-index: 1;width: 45px;height: 45px;
+        img{width:100%;}
+    }
+}
 
 .estorm-zoom-stage { width:375px; height:500px;float:right; position:relative; cursor:all-scroll; }
 

@@ -3030,6 +3030,8 @@ tr.summary-details-excluded { font-style: italic; }
 .item-title .unit { background: none; line-height: 49px; font-size: 24px; padding: 0 10px; float: left; }
 
 .estorm-zoom { width: 485px; float: left; clear: both; background: #ffffff; }
+.estorm-zoom .shipwithin24hours { position: absolute; right: 0; top: 0; z-index: 1; width: 45px; height: 45px; }
+.estorm-zoom .shipwithin24hours img { width: 100%; }
 
 .estorm-zoom-stage { width: 375px; height: 500px; float: right; position: relative; cursor: all-scroll; }
 
