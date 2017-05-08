@@ -1,5 +1,5 @@
 <?php
-$_orders = Mage::getResourceModel('sales/order_collection')
+    $real_orders = Mage::getResourceModel('sales/order_collection')
             ->addAttributeToSelect('*','shipping_firstname')
             ->joinAttribute(
                 'shipping_firstname',
@@ -22,47 +22,100 @@ $_orders = Mage::getResourceModel('sales/order_collection')
                 null,
                 'left'
             )
-            ->addAttributeToFilter('customer_email',array('eq' => 'support@d-daydress.com'))
             ->addAttributeToFilter('state',array('in' => array('new','processing','complete')))
             ->addAttributeToSort('created_at', 'desc')
             ->setPage(1,10);
+
+    $orders_array = array();
+    if( sizeof($real_orders->getItems()) > 0 ){
+        foreach ($real_orders as $order){
+            $order_real_id = $order->getRealOrderId();
+            $country_id = $order->getShippingAddress()->getData('country_id');
+            $firstname  = $order->getShippingAddress()->getData('firstname');
+                
+            foreach ($order->getParentItemsRandomCollection(20) as $_item){
+                $product_id = $_item->getProduct()->getId();
+                $product2 =  Mage::getModel('catalog/product')->load($product_id);
+
+                $orders_array[$order_real_id .'_'.$product_id] = array(
+                    'akey'        =>  $order_real_id .'_'.$product_id.'_real',
+                    'country_id'  =>  $country_id,
+                    'firstname'   =>  $firstname,
+                    'url'         =>  $product2->getProductUrl(),
+                    'image'       =>  Mage::helper('catalog/image')->init($product2, 'small_image')->resize(90,120)->__toString(),
+                    'name'        =>  $product2->getName(),
+                    'price'       =>  Mage::helper('core')->formatPrice($product2->getPrice()),
+                    'finalprice'  =>  Mage::helper('core')->formatPrice($product2->getFinalPrice()),
+                    );
+            }
+        }
+    }
+
+
+    $pending_orders = Mage::getModel('webhome/webhome')
+            ->getCollection()
+            ->addFieldToFilter('customer_email',array('in' => array('457662258@qq.com','support@d-daydress.com')))
+            ->addFieldToFilter('is_active',1)
+            ->addFieldToFilter('reserved_order_id',array(
+                                                        array('notnull' => true),
+                                                        )
+                                                );
+    if( sizeof($pending_orders) > 0 ){
+        foreach($pending_orders as $order){
+            $order_real_id = $order->getReservedOrderId();
+            $order_id = $order->getEntityId();
+            $address = Mage::getModel('sales/quote_address')->getCollection()
+                        ->addFieldToFilter('address_type','shipping')
+                        ->addFieldToFilter('quote_id',$order_id);
+            $country_id = '';
+            $firstname  = '';
+            foreach($address as $ads){
+                $country_id = $ads->getCountryId();
+                $firstname  = $ads->getFirstname();
+                break;
+            }
+            $items =  Mage::getModel('sales/quote_item')->getCollection()
+                ->addFieldToFilter('quote_id',$order_id);
+            foreach($items as $item){
+                $product_id = $_item->getProductId();
+                $product2 =  Mage::getModel('catalog/product')->load($product_id);
+                $orders_array[$order_real_id.'_'.$product_id] = array(
+                    'akey'        =>  $order_real_id.'_'.$product_id.'_pending',
+                    'country_id'  =>  $country_id,
+                    'firstname'   =>  $firstname,
+                    'url'         =>  $product2->getProductUrl(),
+                    'image'       =>  Mage::helper('catalog/image')->init($product2, 'small_image')->resize(90,120)->__toString(),
+                    'name'        =>  $product2->getName(),
+                    'price'       =>  Mage::helper('core')->formatPrice($product2->getPrice()),
+                    'finalprice'  =>  Mage::helper('core')->formatPrice($product2->getFinalPrice()),
+                    );
+            }
+        }
+    }
+    rsort($orders_array);
 ?>
 
 
-<?php if( sizeof($_orders->getItems()) > 0 ):?>
+<?php if( count($orders_array) ):?>
     <div class="home_product_title"><h3>Recent Orders</h3></div>
     <div class="recent_orders">
-        <?php foreach ($_orders as $order):?>
-            <?php $shipto = '';?>
-            <?php if($order->getShippingAddress()): ?>
-                <?php 
-                    $shipto = $order->getShippingAddress()->getData('country_id').
-                            '<i class="flag flag-'.strtolower($order->getShippingAddress()->getData('country_id')).'"></i> '.
-                            ucfirst($order->getShippingAddress()->getData('firstname'));
-                ?>
-            <?php endif;?>
-           
-            <?php foreach ($order->getParentItemsRandomCollection(20) as $_item): ?>
-
-                <?php $product2 =  Mage::getModel('catalog/product')->load($_item->getProduct()->getId());?>
-                <a class="recent_order item" href="<?php echo $product2->getProductUrl();?>">
-                    <img src="<?php echo Mage::helper('catalog/image')->init($product2, 'small_image')->resize(90,120) ;?>">
+        <?php foreach ($orders_array as $order_item):?>
+                <a class="recent_order item" href="<?php echo $order_item['url'];?>">
+                    <img src="<?php echo $order_item['image'] ;?>">
                     <span class="proinfo">
-                        <span class="name"><?php echo $product2->getName();?></span>
+                        <span class="name"><?php echo $order_item['name'];?></span>
                         <span class="check-it">Check it</span>
-                        <?php
-                        $price = Mage::helper('core')->formatPrice($product2->getPrice());
-                        $final_price = Mage::helper('core')->formatPrice($product2->getFinalPrice());
-                        ?>
-                        <span class="old-price"><?php echo $price;?></span>
-                        <?php if($price != $final_price):?>
-                            <span class="special-price"><?php echo $final_price;?></span>
+                        <span class="old-price"><?php echo $order_item['price'];?></span>
+                        <?php if($order_item['price'] != $order_item['finalprice']):?>
+                            <span class="special-price"><?php echo $order_item['finalprice'];?></span>
                         <?php endif;?>
-                        <span class="shippingto"><?php echo $shipto?'ship to '.$shipto:''  ;?></span>
+                        <?php if($order_item['country_id']): ?>
+                            <span class="shippingto">ship to <?php echo $order_item['country_id'].
+                                        '<i class="flag flag-'.strtolower($order_item['country_id']).'"></i> '.
+                                        ucfirst($order_item['firstname']) ?></span>
+                        <?php endif;?>
                     </span>
                 </a>
-
-            <?php endforeach;?>
         <?php endforeach;?>
     </div>
     <script>
@@ -83,7 +136,3 @@ $_orders = Mage::getResourceModel('sales/order_collection')
         });
     </script>
 <?php endif;?>
-
-
-
-
