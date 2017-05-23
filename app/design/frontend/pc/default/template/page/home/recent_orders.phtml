@@ -100,7 +100,7 @@
     <div class="home_product_title"><h3>Recent Orders</h3></div>
     <div class="recent_orders">
         <?php foreach ($orders_array as $order_item):?>
-                <a class="recent_order item" href="<?php echo $order_item['url'];?>">
+                <a class="recent_order item" href="<?php echo $order_item['url'];?>" data-id="<?php echo $order_item['akey']; ?>">
                     <img src="<?php echo $order_item['image'] ;?>">
                     <span class="proinfo">
                         <span class="name"><?php echo $order_item['name'];?></span>
