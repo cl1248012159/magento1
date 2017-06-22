@@ -6,7 +6,7 @@
                     echo $this->getfieldshtml(1);
                     }?>
     <?php $_sole = count($_shippingRateGroups) == 1; foreach ($_shippingRateGroups as $code => $_rates): ?>
-        <h6><?php echo $this->getCarrierName($code) ?></h6>
+        
         <dt>
            
             <?php $_sole = $_sole && count($_rates) == 1; foreach ($_rates as $_rate): ?>
@@ -14,13 +14,41 @@
                    <?php if ($_rate->getErrorMessage()): ?>
                     <ul class="messages"><li class="error-msg"><ul><li><?php echo $_rate->getErrorMessage() ?></li></ul></li></ul>
                    <?php else: ?>
+
+                        <?php /*
+                            http://www.d-daydress.com/diy-dresses-c10095.html - 212
+                            http://www.d-daydress.com/accessories-c10096.html  - 213
+                            这两个类目里的产品
+                            添加一个经济快递选项 就是比较品便宜，5美金固定运费，增加一个产品 加一个五美金运费
+                        */?>
+
+                        <?php if($_rate->getCode() == 'flatrate_flatrate'): ?>
+                            <?php 
+                                $flag = false;
+                                foreach (Mage::getSingleton('checkout/session')->getQuote()->getAllVisibleItems() as $item) {
+                                    $categoryIds = $item->getProduct()->getCategoryIds();
+                                    if(in_array(212, $categoryIds) || in_array(213, $categoryIds)){
+                                        //item 属于这2个分类中的一个
+                                    }else{
+                                        $flag = true;
+                                    }
+                                }
+                                if($flag){continue;}
+                            ?>
+                        <?php endif;?>
+
+
+
+
+
+
                         <?php if ($_sole) : ?>
-                        
                            <span class="no-display"><input name="shipping_method" type="radio" value="<?php echo $_rate->getCode() ?>" id="s_method_<?php echo $_rate->getCode() ?>" checked="checked"  class="radio" /></span>
-                        
                         <?php else: ?>
-                        <input name="shipping_method" type="radio" value="<?php echo $_rate->getCode() ?>" id="s_method_<?php echo $_rate->getCode() ?>"<?php if($_rate->getCode()===$this->getAddressShippingMethod()) echo ' checked="checked"' ?> class="radio validate-one-required-by-name" />
+                            <input name="shipping_method" type="radio" value="<?php echo $_rate->getCode() ?>" id="s_method_<?php echo $_rate->getCode() ?>"<?php if($_rate->getCode()===$this->getAddressShippingMethod()) echo ' checked="checked"' ?> class="radio validate-one-required-by-name" />
                         <?php endif; ?>
+
+
                       
                         <label for="s_method_<?php echo $_rate->getCode() ?>"><?php echo $_rate->getMethodTitle() ?>
                         <?php $_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
@@ -30,7 +58,7 @@
                             (<?php echo $this->__('Incl. Tax'); ?> <?php echo strip_tags($_incl); ?>)
                         <?php endif; ?>
                         </label>
-                          <p class="clear"></p>
+                        <p class="clear"></p>
                    <?php endif ?>
            
             <?php endforeach; ?>
