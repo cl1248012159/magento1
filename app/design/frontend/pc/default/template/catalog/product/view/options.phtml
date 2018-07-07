@@ -262,17 +262,20 @@
                 discount.timeforadmin_value = jQuery(this).attr('value');
                 //console.log(discount);
                 if(discount.input_date_arr.length>1){
-                    var start = discount.input_date_arr[0]-6;
-                    var end = discount.input_date_arr[1]-6;
-                    var price_formart = '';
-                    if(parseInt(discount.priceinput)){
-                        price_formart = (discount.input_pricetype=='fixed'?'$':'')+parseInt(discount.priceinput)+(discount.input_pricetype=='percent'?'%':'');
-                    }
-                    for(var i= start; i<=end; i++ ){
-                        jQuery(".day").eq(i-1).append("<span class='F39' data-timeforadmin_value='"+discount.timeforadmin_value+"'>"+price_formart+"</span>");
+                    //100到60美金加急得就不不要了
+                    if(discount.input_date_arr[0] >= 15 && discount.input_date_arr[1] >= 15){
+                        var start = discount.input_date_arr[0]-14;
+                        var end = discount.input_date_arr[1]-14;
+                        var price_formart = '';
+                        if(parseInt(discount.priceinput)){
+                            price_formart = (discount.input_pricetype=='fixed'?'$':'')+parseInt(discount.priceinput)+(discount.input_pricetype=='percent'?'%':'');
+                        }
+                        for(var i= start; i<=end; i++ ){
+                            jQuery(".day").eq(i-1).append("<span class='F39' data-timeforadmin_value='"+discount.timeforadmin_value+"'>"+price_formart+"</span>");
+                        }
                     }
                 }else{
-                    var start = discount.input_date_arr[0]-6;
+                    var start = discount.input_date_arr[0]-14;
                     var price_formart = '';
                     if(parseInt(discount.priceinput)){
                         price_formart = (discount.input_pricetype=='fixed'?'$':'')+parseInt(discount.priceinput)+(discount.input_pricetype=='percent'?'%':'');
